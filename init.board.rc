@@ -1,0 +1,8 @@
+
+on boot
+	mount debugfs /sys/kernel/debug /sys/kernel/debug
+
+on fs
+	mount ext4 /dev/block/platform/mmci-omap-hs.0/by-name/system /system wait ro
+	mount ext4 /dev/block/platform/mmci-omap-hs.0/by-name/userdata /data wait noatime nosuid nodev
+	mount ext4 /dev/block/platform/mmci-omap-hs.0/by-name/cache /cache wait noatime nosuid nodev
