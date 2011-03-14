@@ -1,6 +1,4 @@
 
-TARGET_PRELINK_MODULE := false
-
 BOARD_USES_GENERIC_AUDIO := true
 
 TARGET_CPU_ABI := armeabi-v7a
