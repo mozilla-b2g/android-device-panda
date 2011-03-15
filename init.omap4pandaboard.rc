@@ -1,8 +1,15 @@
 
 on boot
 	mount debugfs /sys/kernel/debug /sys/kernel/debug
+	chmod 0666 /dev/pvrsrvkm
 
 on fs
 	mount ext4 /dev/block/platform/mmci-omap-hs.0/by-name/system /system wait ro
 	mount ext4 /dev/block/platform/mmci-omap-hs.0/by-name/userdata /data wait noatime nosuid nodev
 	mount ext4 /dev/block/platform/mmci-omap-hs.0/by-name/cache /cache wait noatime nosuid nodev
+
+service pvrsrvinit /vendor/bin/pvrsrvinit
+	class core
+	user root
+	group root
+	oneshot

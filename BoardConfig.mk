@@ -18,6 +18,8 @@ TARGET_BOOTLOADER_BOARD_NAME := panda
 
 USE_CAMERA_STUB := true
 
+BOARD_EGL_CFG := device/ti/panda/egl.cfg
+
 #BOARD_USES_HGL := true
 #BOARD_USES_OVERLAY := true
 #USE_OPENGL_RENDERER := true
