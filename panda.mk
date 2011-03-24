@@ -1,12 +1,7 @@
-ifeq ($(TARGET_PREBUILT_KERNEL),)
-TARGET_PREBUILT_KERNEL := $(LOCAL_PATH)/kernel
-endif
-
 PRODUCT_PACKAGES := \
 	librs_jni
 
 PRODUCT_COPY_FILES := \
-	$(TARGET_PREBUILT_KERNEL):kernel \
 	device/ti/panda/media_profiles.xml:system/etc/media_profiles.xml
 
 PRODUCT_LOCALES := en_US
