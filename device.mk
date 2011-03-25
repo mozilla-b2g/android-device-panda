@@ -7,7 +7,8 @@ PRODUCT_COPY_FILES := \
 PRODUCT_PACKAGES := 
 
 PRODUCT_PROPERTY_OVERRIDES := \
-	dalvik.vm.heapsize=48m
+	dalvik.vm.heapsize=48m \
+	hwui.render_dirty_regions=false
 
 PRODUCT_CHARACTERISTICS := tablet,nosdcard
 
