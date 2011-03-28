@@ -2,9 +2,12 @@
 DEVICE_PACKAGE_OVERLAYS := device/ti/panda/overlay
 
 PRODUCT_COPY_FILES := \
-	device/ti/panda/init.omap4pandaboard.rc:root/init.omap4pandaboard.rc
+	device/ti/panda/init.omap4pandaboard.rc:root/init.omap4pandaboard.rc \
+	frameworks/base/data/etc/android.hardware.usb.host.xml:system/etc/permissions/android.hardware.usb.host.xml \
+	frameworks/base/data/etc/android.hardware.usb.accessory.xml:system/etc/permissions/android.hardware.usb.accessory.xml
 
-PRODUCT_PACKAGES := 
+PRODUCT_PACKAGES := \
+	com.android.future.usb.accessory
 
 PRODUCT_PROPERTY_OVERRIDES := \
 	dalvik.vm.heapsize=48m \
