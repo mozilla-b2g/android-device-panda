@@ -10,8 +10,9 @@ PRODUCT_PACKAGES := \
 	com.android.future.usb.accessory
 
 PRODUCT_PROPERTY_OVERRIDES := \
-	dalvik.vm.heapsize=64m \
 	hwui.render_dirty_regions=false
+
+include frameworks/base/build/tablet-dalvik-heap.mk
 
 PRODUCT_CHARACTERISTICS := tablet,nosdcard
 
