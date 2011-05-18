@@ -7,6 +7,7 @@ PRODUCT_COPY_FILES := \
 	frameworks/base/data/etc/android.hardware.usb.accessory.xml:system/etc/permissions/android.hardware.usb.accessory.xml
 
 PRODUCT_PACKAGES := \
+        make_ext4fs \
 	com.android.future.usb.accessory
 
 PRODUCT_PROPERTY_OVERRIDES := \

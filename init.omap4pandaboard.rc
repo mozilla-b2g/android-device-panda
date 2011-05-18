@@ -8,6 +8,7 @@ on post-fs-data
     # we will remap this as /mnt/sdcard with the sdcard fuse tool
     mkdir /data/media 0775 media_rw media_rw
     chown media_rw media_rw /data/media
+    setprop vold.post_fs_data_done 1
 
 on boot
 	mount debugfs /sys/kernel/debug /sys/kernel/debug
