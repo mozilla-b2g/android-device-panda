@@ -21,16 +21,10 @@
      for different hardware and product builds. -->
 <resources>
 
-    <!-- Set to true for backward compatibility with apps that require external storage. -->
-    <bool name="config_emulateExternalStorage">true</bool>
+    <!-- This device is not "voice capable"; it's data-only. -->
+    <bool name="config_voice_capable">false</bool>
 
-    <!-- Number of megabytes of space to leave unallocated by MTP.
-         MTP will subtract this value from the free space it reports back
-         to the host via GetStorageInfo, and will not allow new files to
-         be added via MTP if there is less than this amount left free in the storage.
-         Since MTP is sharing storage with the rest of the system, we are reserving
-         100 megabytes of space to ensure that MTP activity does not result in the
-         storage being too close to full. -->
-    <integer name="config_mtpReserveSpaceMegabytes">100</integer>
+    <!-- This device does not allow sms service. -->
+    <bool name="config_sms_capable">false</bool>
 
 </resources>
