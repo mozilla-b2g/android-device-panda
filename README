@@ -39,10 +39,6 @@ adb shell dhcpcd eth0
 
 KNOWN ISSUES
 
-The prebuilt kernel doesn't support Ethernet.
-Workaround: build your own 2.6.39 kernel with CONFIG_USB_USBNET=y
-and CONFIG_USB_NET_SMSC95XX=y added to panda_defconfig
-
 Networking is hardcoded to use 8.8.8.8 and 8.8.4.4 DNS.
 
 The connectivity manager doesn't know that the network is available. As
