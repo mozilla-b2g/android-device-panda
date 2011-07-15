@@ -1,38 +1,40 @@
 Running Android on pandaboard:
 
--This assumes that you have all the proper drivers. For Googlers working in
+This assumes that you have all the proper drivers. For Googlers working in
 Google's full internal tree (i.e. with vendor/ti/proprietary and related projects)
 or in equivalent situations, this is done automatically. Other situations TBD.
 
--Board setup:
+Board setup:
 Power supply
 Mini-USB to the PC
 USB keyboard and mouse
 Ethernet, on a network that supports DHCP
 HDMI-to-DVI-D on the P1 DVI-D connector
 
--Do a build:
+# Do a build:
 source build/envsetup.sh
 lunch full_panda-eng
 make
 
--With no SD card inserted, plug USB first, then the power cord, and load fastboot over USB:
+# With no SD card inserted, plug USB first, then the power cord,
+#   and load fastboot over USB:
 device/ti/panda/usbboot device/ti/panda/bootloader.bin
 
--Once in fastboot, insert and initialize an SD card (4GB or greater):
+# Once in fastboot, insert and initialize an SD card (4GB or greater):
 fastboot oem format
 fastboot flash xloader device/ti/panda/xloader.bin
 fastboot flash bootloader device/ti/panda/bootloader.bin
 
--Reboot into the SD card's fastboot (hold GPIO_121 and press PWRON_RESET) and flash the system:
+# Reboot into the SD card's fastboot (hold GPIO_121 and press PWRON_RESET)
+#   and flash the system:
 fastboot erase cache
 fastboot flash userdata
 fastboot flashall
 
--Set the date on the board:
+# Set the date on the board:
 adb shell date $(date +%s)
 
--Configure Ethernet (the kernel must be compiled with Ethernet support)
+# Configure Ethernet (the kernel must be compiled with Ethernet support)
 adb shell dhcpcd eth0
 
 =================================
@@ -47,11 +49,13 @@ manager refuses to download anything.
 
 Everything camera-related crashes.
 
-Settings app crashes when launched directly. Workaround: go to wifi settings
-from the system bar.
-
 Grass live wallpaper crashes.
 
+Set wallapaper button doesn't show up until clicked (bottom of screen,
+horizontally centered).
+
 Timezone setting crashes.
+
+Language selection crashes.
 
 No audio.
