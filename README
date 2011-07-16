@@ -52,6 +52,8 @@ KNOWN ISSUES
 fastboot -w doesn't work. Neither does fastboot erase userdata. They don't
 write a valid filesystem.
 
+adb reboot bootloader doesn't work.
+
 Networking is hardcoded to use 8.8.8.8 and 8.8.4.4 DNS.
 
 The connectivity manager doesn't know that the network is available. As
