@@ -20,7 +20,7 @@ BOARD_USES_GENERIC_AUDIO := true
 USE_CAMERA_STUB := true
 
 # Use the non-open-source parts, if they're present
-#-include vendor/ti/panda/BoardConfigVendor.mk
+-include vendor/ti/panda/BoardConfigVendor.mk
 
 TARGET_CPU_ABI := armeabi-v7a
 TARGET_CPU_ABI2 := armeabi
