@@ -14,9 +14,11 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+(cd ../../../../out/target/product/panda ; zip -r ../../../../device/ti/panda/self-extractors/full_panda-pseudo_ota.zip system)
+
 # 147483 = IRK19
-ZIP=full_panda-ota-147483.zip
-BUILD=irk19
+ZIP=full_panda-pseudo_ota.zip
+BUILD=master
 ROOTDEVICE=panda
 DEVICE=panda
 MANUFACTURER=ti
