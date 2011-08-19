@@ -41,4 +41,5 @@ $(call inherit-product-if-exists, vendor/ti/proprietary/omap4xxx/ti-omap4-vendor
 PRODUCT_NAME := full_panda
 PRODUCT_DEVICE := panda
 PRODUCT_BRAND := Android
-PRODUCT_MODEL := Full AOSP on Panda
+PRODUCT_MODEL := Panda
+PRODUCT_MANUFACTURER := Texas_Instruments_Inc
