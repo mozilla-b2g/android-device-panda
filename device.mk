@@ -27,6 +27,7 @@ PRODUCT_COPY_FILES := \
 	device/ti/panda/ueventd.omap4pandaboard.rc:root/ueventd.omap4pandaboard.rc \
 	device/ti/panda/media_profiles.xml:system/etc/media_profiles.xml \
 	frameworks/base/data/etc/android.hardware.usb.host.xml:system/etc/permissions/android.hardware.usb.host.xml \
+	frameworks/base/data/etc/android.hardware.wifi.xml:system/etc/permissions/android.hardware.wifi.xml \
 	frameworks/base/data/etc/android.hardware.usb.accessory.xml:system/etc/permissions/android.hardware.usb.accessory.xml
 
 PRODUCT_PACKAGES := \
@@ -34,6 +35,7 @@ PRODUCT_PACKAGES := \
 	com.android.future.usb.accessory
 
 PRODUCT_PROPERTY_OVERRIDES := \
+	wifi.interface=wlan0 \
 	hwui.render_dirty_regions=false
 
 PRODUCT_CHARACTERISTICS := tablet,nosdcard
@@ -55,6 +57,11 @@ PRODUCT_PACKAGES += \
 	audio.primary.panda \
 	audio.a2dp.default \
 	libaudioutils
+
+PRODUCT_PACKAGES += \
+	dhcpcd.conf \
+	TQS_D_1.7.ini \
+	calibrator
 
 # Filesystem management tools
 PRODUCT_PACKAGES += \
