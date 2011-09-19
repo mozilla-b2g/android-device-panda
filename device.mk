@@ -41,6 +41,10 @@ PRODUCT_CHARACTERISTICS := tablet,nosdcard
 DEVICE_PACKAGE_OVERLAYS := \
     device/ti/panda/overlay
 
+#HWC Hal
+PRODUCT_PACKAGES += \
+    hwcomposer.omap4
+
 PRODUCT_TAGS += dalvik.gc.type-precise
 
 PRODUCT_PACKAGES += \
