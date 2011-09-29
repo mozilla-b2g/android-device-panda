@@ -51,6 +51,11 @@ PRODUCT_PACKAGES += \
 	librs_jni \
 	com.android.future.usb.accessory
 
+PRODUCT_PACKAGES += \
+	audio.primary.panda \
+	audio.a2dp.default \
+	libaudioutils
+
 # Filesystem management tools
 PRODUCT_PACKAGES += \
 	make_ext4fs
