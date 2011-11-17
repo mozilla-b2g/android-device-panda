@@ -1,8 +1,19 @@
 Running Android on pandaboard:
 
-This assumes that you have all the proper drivers. For Googlers working in
-Google's full internal tree (i.e. with vendor/ti/proprietary and related projects)
-or in equivalent situations, this is done automatically. Other situations TBD.
+This assumes that you have all the necessary proprietary binaries.
+
+When working with AOSP, download them from:
+http://code.google.com/android/nexus/drivers.html#panda
+The master branch in AOSP works with the latest version of those drivers.
+
+Unarchive each file at the root of your source tree (with tar zxvf), and
+execute the included shell script, still at the root of tour source tree.
+That will create a vendor tree that contains the necessary files.
+They can be unarchived and extracted in any order.
+
+For Googlers working in Google's full internal tree (i.e. with
+vendor/ti/proprietary and related projects) or in equivalent
+situations, this is done automatically.
 
 Board setup:
 Power supply
