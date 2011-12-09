@@ -19,7 +19,7 @@ Board setup:
 Power supply
 Mini-USB to the PC
 USB keyboard and mouse
-Ethernet, on a network that supports DHCP
+(optional) Ethernet, on a network that supports DHCP
 HDMI-to-DVI-D on the P1 DVI-D connector
 
 # Initial setup, part 1: build fastboot
@@ -53,7 +53,7 @@ fastboot flashall
 # Post-boot setup, part 1: Set the date on the board:
 adb shell date $(date +%s)
 
-# Post-boot setup, part 2: Configure Ethernet
+# Post-boot setup, part 2: (optional) Configure Ethernet
 adb shell dhcpcd eth0
 
 =================================
@@ -65,9 +65,9 @@ write a valid filesystem.
 
 adb reboot bootloader doesn't work.
 
-Networking is hardcoded to use 8.8.8.8 and 8.8.4.4 DNS.
+Ethernet networking is hardcoded to use 8.8.8.8 and 8.8.4.4 DNS.
 
-The connectivity manager doesn't know that the network is available. As
+The connectivity manager doesn't know that Ethernet is available. As
 a result, the browser complains that the network is down, and the download
 manager refuses to download anything.
 
@@ -78,5 +78,3 @@ Grass live wallpaper crashes.
 Language selection crashes.
 
 No audio.
-
-No wifi.
