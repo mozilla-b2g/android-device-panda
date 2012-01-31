@@ -24,6 +24,13 @@ on fs
 	mount ext4 /dev/block/platform/omap/omap_hsmmc.0/by-name/userdata /data wait noatime nosuid nodev
 	mount ext4 /dev/block/platform/omap/omap_hsmmc.0/by-name/cache /cache wait noatime nosuid nodev
 
+# change permissions for Bluetooth/FM/GPS
+    chmod 0600 /sys/class/rfkill/rfkill0/state
+    chown bluetooth bluetooth /sys/class/rfkill/rfkill0/state
+    chmod 0600 /dev/ttyO1
+    chown bluetooth bluetooth /dev/ttyO1
+
+
 # take a wakelock on boot until PM is working
 	write /sys/power/wake_lock hack
 
@@ -32,6 +39,12 @@ service pvrsrvinit /vendor/bin/pvrsrvinit
 	user root
 	group root
 	oneshot
+
+#shared transport user space mgr service for Bluetooth, FM and GPS
+service uim /system/bin/uim-sysfs
+	class core
+	user bluetooth
+	group bluetooth net_bt_admin
 
 # create virtual SD card at /mnt/sdcard, based on the /data/media directory
 # daemon will drop to user/group system/media_rw after initializing
