@@ -24,7 +24,7 @@ HDMI-to-DVI-D on the P1 DVI-D connector
 
 # Initial setup, part 1: build fastboot
 source build/envsetup.sh
-lunch full_panda-eng
+lunch full_panda_userdebug
 make fastboot
 
 # Initial setup, part 2:
@@ -40,7 +40,7 @@ fastboot flash bootloader device/ti/panda/bootloader.bin
 
 # Build and flash, part 1: Do a build
 source build/envsetup.sh
-lunch full_panda-eng
+lunch full_panda_userdebug
 make
 
 # Build and flash, part 2: Flash
@@ -63,14 +63,8 @@ KNOWN ISSUES
 fastboot -w doesn't work. Neither does fastboot erase userdata. They don't
 write a valid filesystem.
 
-adb reboot bootloader doesn't work.
-
 Ethernet networking is initialized to use DHCP. The status bar will not
 show that there is an Ethernet connection established, but apps such as
 Browser will work.
 
 Everything camera-related crashes.
-
-Grass live wallpaper crashes.
-
-Language selection crashes.
