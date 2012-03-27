@@ -27,6 +27,7 @@ PRODUCT_COPY_FILES := \
 	device/ti/panda/ueventd.omap4pandaboard.rc:root/ueventd.omap4pandaboard.rc \
 	device/ti/panda/media_profiles.xml:system/etc/media_profiles.xml \
 	device/ti/panda/android.hardware.bluetooth.xml:system/etc/permissions/android.hardware.bluetooth.xml \
+        device/ti/panda/gpio-keys.kl:system/usr/keylayout/gpio-keys.kl \
 	frameworks/base/data/etc/android.hardware.usb.host.xml:system/etc/permissions/android.hardware.usb.host.xml \
 	frameworks/base/data/etc/android.hardware.wifi.xml:system/etc/permissions/android.hardware.wifi.xml \
 	frameworks/base/data/etc/android.hardware.usb.accessory.xml:system/etc/permissions/android.hardware.usb.accessory.xml
