@@ -25,14 +25,22 @@ on fs
 	mount ext4 /dev/block/platform/omap/omap_hsmmc.0/by-name/cache /cache wait noatime nosuid nodev
 
 # change permissions for Bluetooth/FM/GPS
-    chmod 0600 /sys/class/rfkill/rfkill0/state
-    chown bluetooth bluetooth /sys/class/rfkill/rfkill0/state
-    chmod 0600 /dev/ttyO1
-    chown bluetooth bluetooth /dev/ttyO1
+	chmod 0600 /sys/class/rfkill/rfkill0/state
+	chown bluetooth bluetooth /sys/class/rfkill/rfkill0/state
+	chmod 0600 /dev/ttyO1
+	chown bluetooth bluetooth /dev/ttyO1
 
 
 # take a wakelock on boot until PM is working
 	write /sys/power/wake_lock hack
+
+# bugreport is triggered by holding down the user button and left mouse button
+service bugreport /system/bin/bugmailer.sh -v
+	class main
+	disabled
+	oneshot
+	keycodes 102 272
+
 
 service pvrsrvinit /vendor/bin/pvrsrvinit
 	class core
