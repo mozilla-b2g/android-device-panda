@@ -24,7 +24,7 @@
 #ifndef LOG_NDEBUG_FUNCTION
 #define LOGFUNC(...) ((void)0)
 #else
-#define LOGFUNC(...) (ALOGV(__VA_ARGS__))
+#define LOGFUNC(...) (LOGV(__VA_ARGS__))
 #endif
 
 #include <errno.h>
@@ -677,7 +677,7 @@ static void remove_channels_from_buf(struct buffer_remix *data, void *buf, size_
     out_frame = data->out_chans * samp_size;
 
     if (out_frame >= in_frame) {
-        ALOGE("BUG: remove_channels_from_buf() can not add channels to a buffer.\n");
+        LOGE("BUG: remove_channels_from_buf() can not add channels to a buffer.\n");
         return;
     }
 
@@ -709,14 +709,14 @@ static void setup_stereo_to_mono_input_remix(struct omap4_stream_in *in)
         br->in_chans = 2;
         br->out_chans = 1;
     } else
-        ALOGE("Could not allocate memory for struct buffer_remix\n");
+        LOGE("Could not allocate memory for struct buffer_remix\n");
 
     if (in->buffer) {
         size_t chans = (br->in_chans > br->out_chans) ? br->in_chans : br->out_chans;
         free(in->buffer);
         in->buffer = malloc(in->config.period_size * br->sample_size * chans);
         if (!in->buffer)
-            ALOGE("Could not reallocate memory for input buffer\n");
+            LOGE("Could not reallocate memory for input buffer\n");
     }
 
     if (in->remix_at_driver)
@@ -792,7 +792,7 @@ static int set_route_by_array(struct mixer *mixer, struct route_setting *route,
 
 static int start_call(struct omap4_audio_device *adev)
 {
-    ALOGE("Opening modem PCMs");
+    LOGE("Opening modem PCMs");
     LOGFUNC("%s(%p)", __FUNCTION__, adev);
 
     pcm_config_vx.rate = VX_NB_SAMPLING_RATE;
@@ -801,7 +801,7 @@ static int start_call(struct omap4_audio_device *adev)
     if (adev->pcm_modem_dl == NULL) {
         adev->pcm_modem_dl = pcm_open(0, PORT_MODEM, PCM_OUT, &pcm_config_vx);
         if (!pcm_is_ready(adev->pcm_modem_dl)) {
-            ALOGE("cannot open PCM modem DL stream: %s", pcm_get_error(adev->pcm_modem_dl));
+            LOGE("cannot open PCM modem DL stream: %s", pcm_get_error(adev->pcm_modem_dl));
             goto err_open_dl;
         }
     }
@@ -809,7 +809,7 @@ static int start_call(struct omap4_audio_device *adev)
     if (adev->pcm_modem_ul == NULL) {
         adev->pcm_modem_ul = pcm_open(0, PORT_MODEM, PCM_IN, &pcm_config_vx);
         if (!pcm_is_ready(adev->pcm_modem_ul)) {
-            ALOGE("cannot open PCM modem UL stream: %s", pcm_get_error(adev->pcm_modem_ul));
+            LOGE("cannot open PCM modem UL stream: %s", pcm_get_error(adev->pcm_modem_ul));
             goto err_open_ul;
         }
     }
@@ -831,7 +831,7 @@ err_open_dl:
 
 static void end_call(struct omap4_audio_device *adev)
 {
-    ALOGE("Closing modem PCMs");
+    LOGE("Closing modem PCMs");
     LOGFUNC("%s(%p)", __FUNCTION__, adev);
 
     pcm_stop(adev->pcm_modem_dl);
@@ -963,7 +963,7 @@ static void select_mode(struct omap4_audio_device *adev)
     LOGFUNC("%s(%p)", __FUNCTION__, adev);
 
     if (adev->mode == AUDIO_MODE_IN_CALL) {
-        ALOGE("Entering IN_CALL state, in_call=%d", adev->in_call);
+        LOGE("Entering IN_CALL state, in_call=%d", adev->in_call);
         if (!adev->in_call) {
             force_all_standby(adev);
             /* force earpiece route for in call state if speaker is the
@@ -987,7 +987,7 @@ static void select_mode(struct omap4_audio_device *adev)
             adev->in_call = 1;
         }
     } else {
-        ALOGE("Leaving IN_CALL state, in_call=%d, mode=%d",
+        LOGE("Leaving IN_CALL state, in_call=%d, mode=%d",
              adev->in_call, adev->mode);
         if (adev->in_call) {
             adev->in_call = 0;
@@ -1321,7 +1321,7 @@ static int start_output_stream(struct omap4_stream_out *out)
     out->pcm = pcm_open(card, port, PCM_OUT | PCM_MMAP, &out->config);
 
     if (!pcm_is_ready(out->pcm)) {
-        ALOGE("cannot open pcm_out driver: %s", pcm_get_error(out->pcm));
+        LOGE("cannot open pcm_out driver: %s", pcm_get_error(out->pcm));
         pcm_close(out->pcm);
         adev->active_output = NULL;
         return -ENOMEM;
@@ -1462,7 +1462,7 @@ static int get_playback_delay(struct omap4_stream_out *out,
         buffer->time_stamp.tv_sec  = 0;
         buffer->time_stamp.tv_nsec = 0;
         buffer->delay_ns           = 0;
-        ALOGV("get_playback_delay(): pcm_get_htimestamp error,"
+        LOGV("get_playback_delay(): pcm_get_htimestamp error,"
                 "setting playbackTimestamp to 0");
         return status;
     }
@@ -1827,7 +1827,7 @@ static int start_input_stream(struct omap4_stream_in *in)
     if (in->remix_at_driver)
         in->config.channels = in->remix_at_driver->out_chans;
     if (!pcm_is_ready(in->pcm)) {
-        ALOGE("cannot open pcm_in driver: %s", pcm_get_error(in->pcm));
+        LOGE("cannot open pcm_in driver: %s", pcm_get_error(in->pcm));
         pcm_close(in->pcm);
         adev->active_input = NULL;
         return -ENOMEM;
@@ -2039,7 +2039,7 @@ static void get_capture_delay(struct omap4_stream_in *in,
         buffer->time_stamp.tv_sec  = 0;
         buffer->time_stamp.tv_nsec = 0;
         buffer->delay_ns           = 0;
-        ALOGW("read get_capture_delay(): pcm_htimestamp error");
+        LOGW("read get_capture_delay(): pcm_htimestamp error");
         return;
     }
 
@@ -2060,7 +2060,7 @@ static void get_capture_delay(struct omap4_stream_in *in,
 
     buffer->time_stamp = tstamp;
     buffer->delay_ns   = delay_ns;
-    ALOGV("get_capture_delay time_stamp = [%ld].[%ld], delay_ns: [%d],"
+    LOGV("get_capture_delay time_stamp = [%ld].[%ld], delay_ns: [%d],"
          " kernel_delay:[%ld], buf_delay:[%ld], rsmp_delay:[%ld], kernel_frames:[%d], "
          "in->frames_in:[%d], in->proc_frames_in:[%d], frames:[%d]",
          buffer->time_stamp.tv_sec , buffer->time_stamp.tv_nsec, buffer->delay_ns,
@@ -2076,7 +2076,7 @@ static int32_t update_echo_reference(struct omap4_stream_in *in, size_t frames)
 
     LOGFUNC("%s(%p, %ul)", __FUNCTION__, in, frames);
 
-    ALOGV("update_echo_reference, frames = [%d], in->ref_frames_in = [%d],  "
+    LOGV("update_echo_reference, frames = [%d], in->ref_frames_in = [%d],  "
           "b.frame_count = [%d]",
          frames, in->ref_frames_in, frames - in->ref_frames_in);
     if (in->ref_frames_in < frames) {
@@ -2095,12 +2095,12 @@ static int32_t update_echo_reference(struct omap4_stream_in *in, size_t frames)
         if (in->echo_reference->read(in->echo_reference, &b) == 0)
         {
             in->ref_frames_in += b.frame_count;
-            ALOGV("update_echo_reference: in->ref_frames_in:[%d], "
+            LOGV("update_echo_reference: in->ref_frames_in:[%d], "
                     "in->ref_buf_size:[%d], frames:[%d], b.frame_count:[%d]",
                  in->ref_frames_in, in->ref_buf_size, frames, b.frame_count);
         }
     } else
-        ALOGW("update_echo_reference: NOT enough frames to read ref buffer");
+        LOGW("update_echo_reference: NOT enough frames to read ref buffer");
     return b.delay_ns;
 }
 
@@ -2208,7 +2208,7 @@ static int get_next_buffer(struct resampler_buffer_provider *buffer_provider,
                                    (void*)in->buffer,
                                    in->config.period_size * hw_frame_size);
         if (in->read_status != 0) {
-            ALOGE("get_next_buffer() pcm_read error %d", in->read_status);
+            LOGE("get_next_buffer() pcm_read error %d", in->read_status);
             buffer->raw = NULL;
             buffer->frame_count = 0;
             return in->read_status;
@@ -2311,7 +2311,7 @@ static ssize_t process_frames(struct omap4_stream_in *in, void* buffer, ssize_t 
                 in->proc_buf = (int16_t *)realloc(in->proc_buf,
                                          in->proc_buf_size *
                                              in->config.channels * sizeof(int16_t));
-                ALOGV("process_frames(): in->proc_buf %p size extended to %d frames",
+                LOGV("process_frames(): in->proc_buf %p size extended to %d frames",
                      in->proc_buf, in->proc_buf_size);
             }
             frames_rd = read_frames(in,
@@ -2911,7 +2911,7 @@ static int adev_open(const hw_module_t* module, const char* name,
     adev->mixer = mixer_open(0);
     if (!adev->mixer) {
         free(adev);
-        ALOGE("Unable to open the mixer, aborting.");
+        LOGE("Unable to open the mixer, aborting.");
         return -EINVAL;
     }
 
@@ -2963,7 +2963,7 @@ static int adev_open(const hw_module_t* module, const char* name,
         !adev->mixer_ctls.dl1_eq || !adev->mixer_ctls.voice_ul_volume) {
         mixer_close(adev->mixer);
         free(adev);
-        ALOGE("Unable to locate all mixer controls, aborting.");
+        LOGE("Unable to locate all mixer controls, aborting.");
         return -EINVAL;
     }
 
@@ -2987,7 +2987,7 @@ static int adev_open(const hw_module_t* module, const char* name,
         pthread_mutex_unlock(&adev->lock);
         mixer_close(adev->mixer);
         free(adev);
-        ALOGE("Unsupported boardtype, aborting.");
+        LOGE("Unsupported boardtype, aborting.");
         return -EINVAL;
     }
 
