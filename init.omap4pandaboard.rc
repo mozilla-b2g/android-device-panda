@@ -92,3 +92,9 @@ service dhcpcd_eth0 /system/bin/dhcpcd -ABKL
 service iprenew_eth0 /system/bin/dhcpcd -n
     disabled
     oneshot
+
+service network /system/bin/network.sh
+    class main
+
+service sut /system/bin/sut.sh
+    class main
