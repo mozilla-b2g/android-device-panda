@@ -22,6 +22,7 @@ endif
 
 PRODUCT_COPY_FILES := \
 	$(LOCAL_KERNEL):kernel \
+	device/ti/panda/orng.ko:system/lib/modules/orng.ko \
 	device/ti/panda/init.omap4pandaboard.rc:root/init.omap4pandaboard.rc \
 	device/ti/panda/init.omap4pandaboard.usb.rc:root/init.omap4pandaboard.usb.rc \
 	device/ti/panda/ueventd.omap4pandaboard.rc:root/ueventd.omap4pandaboard.rc \
