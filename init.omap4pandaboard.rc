@@ -93,8 +93,15 @@ service iprenew_eth0 /system/bin/dhcpcd -n
     disabled
     oneshot
 
-service network /system/bin/network.sh
+service netcfg_eth0 /system/bin/netcfg eth0 dhcp
     class main
+    oneshot
 
 service sut /system/bin/sut.sh
     class main
+    disabled
+
+# run sut when network has been configured
+on property:init.svc.netcfg_eth0=stopped
+    stop sut
+    start sut
