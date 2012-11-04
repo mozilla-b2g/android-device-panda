@@ -33,7 +33,6 @@ PRODUCT_PROPERTY_OVERRIDES := \
         net.dns1=8.8.8.8 \
         net.dns2=8.8.4.4
 PRODUCT_COPY_FILES := \
-        device/ti/panda/network.sh:system/bin/network.sh \
         device/ti/panda/sut.sh:system/bin/sut.sh
 
 # Inherit from those products. Most specific first.
