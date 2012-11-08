@@ -19,7 +19,12 @@ on boot
 	mount debugfs /sys/kernel/debug /sys/kernel/debug
 	chmod 0666 /dev/pvrsrvkm
 
+service mklinks /sbin/mklinks
+	disabled
+	oneshot
+
 on fs
+	start mklinks
 	mount ext4 /dev/block/platform/omap/omap_hsmmc.0/by-name/system /system wait rw
 	chmod 0755 /system/b2g/b2g
 	chmod 0755 /system/b2g/plugin-container
