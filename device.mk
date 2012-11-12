@@ -27,13 +27,13 @@ PRODUCT_COPY_FILES := \
 	device/ti/panda/ueventd.omap4pandaboard.rc:root/ueventd.omap4pandaboard.rc \
 	device/ti/panda/media_profiles.xml:system/etc/media_profiles.xml \
 	device/ti/panda/android.hardware.bluetooth.xml:system/etc/permissions/android.hardware.bluetooth.xml \
-        device/ti/panda/gpio-keys.kl:system/usr/keylayout/gpio-keys.kl \
+	device/ti/panda/gpio-keys.kl:system/usr/keylayout/gpio-keys.kl \
 	frameworks/base/data/etc/android.hardware.usb.host.xml:system/etc/permissions/android.hardware.usb.host.xml \
 	frameworks/base/data/etc/android.hardware.wifi.xml:system/etc/permissions/android.hardware.wifi.xml \
 	frameworks/base/data/etc/android.hardware.usb.accessory.xml:system/etc/permissions/android.hardware.usb.accessory.xml
 
 PRODUCT_PACKAGES := \
-        make_ext4fs \
+	make_ext4fs \
 	com.android.future.usb.accessory
 
 PRODUCT_PROPERTY_OVERRIDES := \
@@ -43,11 +43,11 @@ PRODUCT_PROPERTY_OVERRIDES := \
 PRODUCT_CHARACTERISTICS := tablet,nosdcard
 
 DEVICE_PACKAGE_OVERLAYS := \
-    device/ti/panda/overlay
+	device/ti/panda/overlay
 
 #HWC Hal
 PRODUCT_PACKAGES += \
-    hwcomposer.omap4
+	hwcomposer.omap4
 
 PRODUCT_TAGS += dalvik.gc.type-precise
 
@@ -59,7 +59,6 @@ PRODUCT_PACKAGES += \
 	audio.primary.panda \
 	audio.a2dp.default \
 	libaudioutils
-
 
 PRODUCT_PACKAGES += \
 	dhcpcd.conf \
