@@ -91,14 +91,10 @@ service iprenew_wlan0 /system/bin/dhcpcd -n
     oneshot
 
 service dhcpcd_eth0 /system/bin/dhcpcd eth0
-    main class
+    class main
     oneshot
 
 service iprenew_eth0 /system/bin/dhcpcd -n
-    disabled
-    oneshot
-
-service netcfg_eth0 /system/bin/netcfg eth0 dhcp
     disabled
     oneshot
 
