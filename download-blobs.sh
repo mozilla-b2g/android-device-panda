@@ -34,7 +34,7 @@ install_blobs() {
     done
 }
 
-PANDA_BLOBS="imgtec-panda-imm76i-67545da7.tgz"
+PANDA_BLOBS="imgtec-panda-20120430-67545da7.tgz"
 #PANDA_BLOBS="imgtec-panda-iml74k-cfb7bdad.tgz"
 
 CSUM_LIST="$PWD/blob-shasums"
